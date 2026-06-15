@@ -7,59 +7,47 @@ from datetime import datetime
 # 0. 프리미엄 금융 앱 테마 스타일 주입
 st.set_page_config(layout="wide", page_title="MDD 터미널", page_icon="📈")
 
-# 🚨 [다크 테마 강제 고정 치트키] 사용자의 웹브라우저 자체에 다크모드 메타 속성 강제 주입
-st.markdown("""
-    <script>
-        // 브라우저 자체의 다크모드 선호도를 강제로 'dark'로 고정
-        document.documentElement.setAttribute('data-theme', 'dark');
-    </script>
-""", unsafe_allow_html=True)
-
 st.markdown("""
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700&display=swap');
         
-        /* 🚨 브라우저 시스템 테마 설정을 무시하도록 루트 레벨에서 다크모드 강제 선언 */
-        :root {
-            color-scheme: dark !important;
-        }
-        
         html, body, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
-            background-color: #090d16 !important;
-            color: #f8fafc !important;
             font-family: 'Inter', sans-serif;
         }
         
-        /* 사이드바 영역도 빈틈없이 다크 테마 고정 */
-        [data-testid="stSidebar"] {
-            background-color: #111827 !important;
-            border-right: 1px solid #1f2937;
+        /* 다크모드 권장 가이드 박스 */
+        .theme-notice-box {
+            background: rgba(59, 130, 246, 0.08);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 14px;
+            border-radius: 10px;
+            margin-bottom: 20px;
         }
-        
-        /* 시스템 기본 텍스트 색상이 깨지지 않게 보정 */
-        h1, h2, h3, h4, h5, h6, p, span, label {
-            color: #f8fafc !important;
+        .theme-notice-title {
+            font-size: 12px; font-weight: 700; color: #3b82f6 !important; display: flex; align-items: center; gap: 4px;
+        }
+        .theme-notice-text {
+            font-size: 11px; color: #9ca3af !important; margin-top: 6px; line-height: 1.5;
         }
         
         .main-title {
-            font-size: 28px; font-weight: 700; color: #f8fafc !important;
-            letter-spacing: -0.5px; margin-bottom: 25px;
+            font-size: 28px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 25px;
         }
         .asset-card {
-            background: #111827; border: 1px solid #1f2937; border-radius: 16px;
-            padding: 24px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); margin-bottom: 20px;
+            background: rgba(17, 24, 39, 0.6); border: 1px solid rgba(31, 41, 55, 0.7); border-radius: 16px;
+            padding: 24px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); margin-bottom: 20px;
         }
         .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 15px; }
-        .metric-item { background: #1f2937; padding: 12px 16px; border-radius: 10px; border: 1px solid #374151; }
+        .metric-item { background: rgba(31, 41, 55, 0.5); padding: 12px 16px; border-radius: 10px; border: 1px solid rgba(55, 65, 81, 0.5); }
         .metric-label { font-size: 11px; color: #9ca3af !important; font-weight: 500; text-transform: uppercase; }
-        .metric-value { font-size: 20px; font-weight: 700; color: #f9fafb !important; margin-top: 4px; }
-        .sidebar-macro-box { background: #111827; border: 1px solid #374151; padding: 16px; border-radius: 12px; margin-bottom: 15px; }
+        .metric-value { font-size: 20px; font-weight: 700; margin-top: 4px; }
+        .sidebar-macro-box { background: rgba(17, 24, 39, 0.6); border: 1px solid rgba(55, 65, 81, 0.5); padding: 16px; border-radius: 12px; margin-bottom: 15px; }
         
         /* 등급 가이드 */
         .guide-box {
-            background: #111827; border: 1px solid #1f2937; padding: 16px; border-radius: 12px; margin-bottom: 15px;
+            background: rgba(17, 24, 39, 0.6); border: 1px solid rgba(31, 41, 55, 0.7); padding: 16px; border-radius: 12px; margin-bottom: 15px;
         }
-        .guide-title { font-size: 13px; font-weight: 700; color: #f8fafc !important; margin-bottom: 8px; }
+        .guide-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
         .guide-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center; font-size: 11px; }
         
         .badge { padding: 4px 8px; border-radius: 6px; font-weight: 600; display: inline-block; font-size: 12px; }
@@ -70,7 +58,7 @@ st.markdown("""
 
         /* 구글 애드센스 심사용 푸터 스타일 */
         .footer-container {
-            margin-top: 60px; padding-top: 30px; border-top: 1px solid #1f2937; text-align: center; color: #6b7280; font-size: 12px;
+            margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(31, 41, 55, 0.7); text-align: center; color: #6b7280; font-size: 12px;
         }
         .footer-links a {
             color: #9ca3af !important; text-decoration: none; margin: 0 10px; font-weight: 500;
@@ -103,6 +91,17 @@ st.markdown('<p class="main-title">📈 MDD 터미널</p>', unsafe_allow_html=Tr
 
 # --- [사이드바 설정] ---
 st.sidebar.markdown("### ⚙️ 시스템 설정")
+
+# 💡 상단에 배치한 세련된 다크모드 추천 패널
+st.sidebar.markdown("""
+    <div class="theme-notice-box">
+        <div class="theme-notice-title">💡 다크 모드 이용 권장</div>
+        <div class="theme-notice-text">
+            본 터미널은 <b>다크 모드(Dark Theme)</b>에서 가장 선명한 금융 차트 시각화를 제공합니다.<br><br>
+            화면이 하얗게 보이신다면 우측 상단 <b>[ ☰ ] 메뉴 ➔ Settings ➔ Theme</b>에서 <b>Dark</b>를 선택해 주세요.
+        </div>
+    </div>
+""", unsafe_allow_html=True)
 
 with st.sidebar.expander("ℹ️ 종목 코드 검색 방법 보기"):
     st.markdown("""
@@ -201,7 +200,7 @@ if live_fx:
     st.sidebar.markdown(f"""
         <div class="sidebar-macro-box" style="border-left: 4px solid #3b82f6;">
             <div style="color: #9ca3af; font-size: 11px; font-weight: 600; letter-spacing: 0.5px;">실시간 원/달러 환율</div>
-            <div style="font-size: 22px; font-weight: 700; color: #ffffff; margin-top: 2px;">₩{live_fx:,.2f}</div>
+            <div style="font-size: 22px; font-weight: 700; margin-top: 2px;">₩{live_fx:,.2f}</div>
             <div style="font-size: 12px; color: {fx_color}; font-weight: 600; margin-top: 2px;">{fx_sign}{fx_chg:,.2f} ({fx_sign}{fx_pct:.2f}%)</div>
         </div>
     """, unsafe_allow_html=True)
@@ -212,7 +211,7 @@ if live_oil:
     st.sidebar.markdown(f"""
         <div class="sidebar-macro-box" style="border-left: 4px solid #f59e0b;">
             <div style="color: #9ca3af; font-size: 11px; font-weight: 600; letter-spacing: 0.5px;">WTI 국제 유가</div>
-            <div style="font-size: 22px; font-weight: 700; color: #ffffff; margin-top: 2px;">${live_oil:,.2f} <span style="font-size:12px; color:#6b7280; font-weight:400;">/ bbl</span></div>
+            <div style="font-size: 22px; font-weight: 700; margin-top: 2px;">${live_oil:,.2f} <span style="font-size:12px; color:#6b7280; font-weight:400;">/ bbl</span></div>
             <div style="font-size: 12px; color: {oil_color}; font-weight: 600; margin-top: 2px;">{oil_sign}{oil_chg:,.2f} ({oil_sign}{oil_pct:.2f}%)</div>
         </div>
     """, unsafe_allow_html=True)
@@ -249,14 +248,14 @@ else:
                 <span style="font-size:16px; font-weight:700; color:#38bdf8;">💵 달러(USD) 기준 거래가 통계</span>
                 <span style="font-size:12px; color:#ef4444; font-weight:700; background:rgba(239,68,68,0.1); padding:4px 8px; border-radius:6px;">현재 낙폭 {usd_current_dd:.1f}%</span>
             </div>
-            <div style="font-size: 38px; font-weight: 700; color: #f9fafb; margin-top: 15px;">${usd_current:,.2f}</div>
-            <div style="font-size: 13px; color: #6b7280; margin-top: 2px;">역사적 최고가: <span style="color:#9ca3af; font-weight:600;">${usd_peak_max:,.2f}</span></div>
+            <div style="font-size: 38px; font-weight: 700; margin-top: 15px;">${usd_current:,.2f}</div>
+            <div style="font-size: 13px; color: #6b7280; margin-top: 2px;">역사적 최고가: <span style="font-weight:600;">${usd_peak_max:,.2f}</span></div>
             <div class="metric-grid">
                 <div class="metric-item"><div class="metric-label">전고점 대비 -10%</div><div class="metric-value">${usd_t10:,.2f}</div></div>
                 <div class="metric-item"><div class="metric-label">전고점 대비 -15%</div><div class="metric-value">${usd_t15:,.2f}</div></div>
                 <div class="metric-item"><div class="metric-label">전고점 대비 -20%</div><div class="metric-value">${usd_t20:,.2f}</div></div>
             </div>
-            <div style="margin-top:16px; padding-top:12px; border-top:1px solid #1f2937; font-size:14px; color:#9ca3af;">
+            <div style="margin-top:16px; padding-top:12px; border-top:1px solid rgba(31, 41, 55, 0.7); font-size:14px; color:#9ca3af;">
                 📉 역사적 <b>최대 하락률(MDD):</b> <span style="color:#ef4444; font-weight:700; font-size:15px;">{usd_mdd*100:.1f}%</span> <span style="font-size:12px; color:#6b7280;">({usd_mdd_date.strftime('%Y-%m-%d')})</span>
             </div>
         </div>
@@ -268,14 +267,14 @@ else:
                 <span style="font-size:16px; font-weight:700; color:#a855f7;">₩ 원화(KRW) 기준 거래가 통계</span>
                 <span style="font-size:12px; color:#3b82f6; font-weight:700; background:rgba(59,130,246,0.1); padding:4px 8px; border-radius:6px;">현재 낙폭 {krw_current_dd:.1f}%</span>
             </div>
-            <div style="font-size: 38px; font-weight: 700; color: #f9fafb; margin-top: 15px;">₩{int(krw_current):,}</div>
-            <div style="font-size: 13px; color: #6b7280; margin-top: 2px;">역사적 최고가: <span style="color:#9ca3af; font-weight:600;">₩{int(krw_peak_max):,}</span></div>
+            <div style="font-size: 38px; font-weight: 700; margin-top: 15px;">₩{int(krw_current):,}</div>
+            <div style="font-size: 13px; color: #6b7280; margin-top: 2px;">역사적 최고가: <span style="font-weight:600;">₩{int(krw_peak_max):,}</span></div>
             <div class="metric-grid">
                 <div class="metric-item"><div class="metric-label">전고점 대비 -10%</div><div class="metric-value">₩{int(krw_t10):,}</div></div>
                 <div class="metric-item"><div class="metric-label">전고점 대비 -15%</div><div class="metric-value">₩{int(krw_t15):,}</div></div>
                 <div class="metric-item"><div class="metric-label">전고점 대비 -20%</div><div class="metric-value">₩{int(krw_t20):,}</div></div>
             </div>
-            <div style="margin-top:16px; padding-top:12px; border-top:1px solid #1f2937; font-size:14px; color:#9ca3af;">
+            <div style="margin-top:16px; padding-top:12px; border-top:1px solid rgba(31, 41, 55, 0.7); font-size:14px; color:#9ca3af;">
                 📉 역사적 <b>최대 하락률(MDD):</b> <span style="color:#3b82f6; font-weight:700; font-size:15px;">{krw_mdd*100:.1f}%</span> <span style="font-size:12px; color:#6b7280;">({krw_mdd_date.strftime('%Y-%m-%d')})</span>
             </div>
         </div>
@@ -302,32 +301,32 @@ else:
                 st.markdown(f"### 📊 {ticker} 원화 기준 하락률(DD) 추세")
                 fig_krw = go.Figure()
                 fig_krw.add_trace(go.Scatter(x=df.index, y=df['KRW_DD'] * 100, mode='lines', line=dict(color='#3b82f6', width=1.5), fill='tozeroy', fillcolor='rgba(59, 130, 246, 0.08)', name='원화 DD'))
-                fig_krw.update_layout(template="plotly_dark", paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', yaxis=dict(ticksuffix="%", range=[y_min_limit, 5], gridcolor='#1f2937'), xaxis=dict(gridcolor='#1f2937'), height=320, margin=dict(l=10, r=10, t=10, b=10), hovermode="x unified")
+                fig_krw.update_layout(template="plotly_dark", paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', yaxis=dict(ticksuffix="%", range=[y_min_limit, 5], gridcolor='rgba(255,255,255,0.1)'), xaxis=dict(gridcolor='rgba(255,255,255,0.1)'), height=320, margin=dict(l=10, r=10, t=10, b=10), hovermode="x unified")
                 st.plotly_chart(fig_krw, use_container_width=True)
 
                 st.markdown(f"### 📊 {ticker} 달러 기준 하락률(DD) 추세")
                 fig_usd = go.Figure()
                 fig_usd.add_trace(go.Scatter(x=df.index, y=df['USD_DD'] * 100, mode='lines', line=dict(color='#ef4444', width=1.5), fill='tozeroy', fillcolor='rgba(239, 68, 68, 0.08)', name='달러 DD'))
-                fig_usd.update_layout(template="plotly_dark", paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', yaxis=dict(ticksuffix="%", range=[y_min_limit, 5], gridcolor='#1f2937'), xaxis=dict(gridcolor='#1f2937'), height=320, margin=dict(l=10, r=10, t=10, b=10), hovermode="x unified")
+                fig_usd.update_layout(template="plotly_dark", paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', yaxis=dict(ticksuffix="%", range=[y_min_limit, 5], gridcolor='rgba(255,255,255,0.1)'), xaxis=dict(gridcolor='rgba(255,255,255,0.1)'), height=320, margin=dict(l=10, r=10, t=10, b=10), hovermode="x unified")
                 st.plotly_chart(fig_usd, use_container_width=True)
             else:
                 st.markdown(f"### 📊 {ticker} 달러 기준 하락률(DD) 추세")
                 fig_usd = go.Figure()
                 fig_usd.add_trace(go.Scatter(x=df.index, y=df['USD_DD'] * 100, mode='lines', line=dict(color='#ef4444', width=1.5), fill='tozeroy', fillcolor='rgba(239, 68, 68, 0.08)', name='달러 DD'))
-                fig_usd.update_layout(template="plotly_dark", paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', yaxis=dict(ticksuffix="%", range=[y_min_limit, 5], gridcolor='#1f2937'), xaxis=dict(gridcolor='#1f2937'), height=320, margin=dict(l=10, r=10, t=10, b=10), hovermode="x unified")
+                fig_usd.update_layout(template="plotly_dark", paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', yaxis=dict(ticksuffix="%", range=[y_min_limit, 5], gridcolor='rgba(255,255,255,0.1)'), xaxis=dict(gridcolor='rgba(255,255,255,0.1)'), height=320, margin=dict(l=10, r=10, t=10, b=10), hovermode="x unified")
                 st.plotly_chart(fig_usd, use_container_width=True)
 
                 st.markdown(f"### 📊 {ticker} 원화 기준 하락률(DD) 추세")
                 fig_krw = go.Figure()
                 fig_krw.add_trace(go.Scatter(x=df.index, y=df['KRW_DD'] * 100, mode='lines', line=dict(color='#3b82f6', width=1.5), fill='tozeroy', fillcolor='rgba(59, 130, 246, 0.08)', name='원화 DD'))
-                fig_krw.update_layout(template="plotly_dark", paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', yaxis=dict(ticksuffix="%", range=[y_min_limit, 5], gridcolor='#1f2937'), xaxis=dict(gridcolor='#1f2937'), height=320, margin=dict(l=10, r=10, t=10, b=10), hovermode="x unified")
+                fig_krw.update_layout(template="plotly_dark", paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', yaxis=dict(ticksuffix="%", range=[y_min_limit, 5], gridcolor='rgba(255,255,255,0.1)'), xaxis=dict(gridcolor='rgba(255,255,255,0.1)'), height=320, margin=dict(l=10, r=10, t=10, b=10), hovermode="x unified")
                 st.plotly_chart(fig_krw, use_container_width=True)
         else:
             st.markdown("### 🔄 달러 및 원화 낙폭 복합 오버레이 분석")
             fig_overlay = go.Figure()
             fig_overlay.add_trace(go.Scatter(x=df.index, y=df['USD_DD'] * 100, mode='lines', line=dict(color='#ef4444', width=1.8), name='달러 낙폭 (USD)'))
             fig_overlay.add_trace(go.Scatter(x=df.index, y=df['KRW_DD'] * 100, mode='lines', line=dict(color='#3b82f6', width=1.8), name='원화 낙폭 (KRW 환반영)'))
-            fig_overlay.update_layout(template="plotly_dark", paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', yaxis=dict(ticksuffix="%", range=[y_min_limit, 5], gridcolor='#1f2937'), xaxis=dict(gridcolor='#1f2937'), height=550, margin=dict(l=10, r=10, t=10, b=10), hovermode="x unified", legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1))
+            fig_overlay.update_layout(template="plotly_dark", paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)', yaxis=dict(ticksuffix="%", range=[y_min_limit, 5], gridcolor='rgba(255,255,255,0.1)'), xaxis=dict(gridcolor='rgba(255,255,255,0.1)'), height=550, margin=dict(l=10, r=10, t=10, b=10), hovermode="x unified", legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1))
             st.plotly_chart(fig_overlay, use_container_width=True)
 
     with side_col:
@@ -407,7 +406,7 @@ else:
 
 
 # --- 🛡️ [구글 애드센스 승인 보장 전용 프리미엄 정보 가이드 패널] ---
-st.markdown("<br><br><hr id='policy-section' style='border:0; height:1px; background:#1f2937;'>", unsafe_allow_html=True)
+st.markdown("<br><br><hr id='policy-section' style='border:0; height:1px; background:rgba(31, 41, 55, 0.7);'>", unsafe_allow_html=True)
 st.markdown("### 📚 MDD 터미널 종합 가이드 및 이용 정책")
 
 tab1, tab2, tab3 = st.tabs(["💡 MDD 터미널 활용 가이드 (FAQ)", "🔒 개인정보 처리방침", "✉️ 서비스 소개 및 면책조항"])
