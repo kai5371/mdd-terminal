@@ -7,6 +7,12 @@ from datetime import datetime
 # 0. 프리미엄 금융 앱 테마 스타일 주입
 st.set_page_config(layout="wide", page_title="MDD 터미널", page_icon="📈")
 
+# [애드센스 코드 삽입 위치]
+st.markdown("""
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9281030458007760"
+     crossorigin="anonymous"></script>
+""", unsafe_allow_html=True)
+
 st.markdown("""
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
