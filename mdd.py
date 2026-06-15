@@ -17,8 +17,8 @@ st.markdown("""
 
         /* 다크모드 권장 가이드 패널 스타일 (테마 일체형) */
         .theme-notice-box-enhanced {
-            background-color: rgba(255, 255, 255, 0.03) !important; /* 아주 은은한 배경 */
-            border: 1px solid #374151 !important; /* 테마와 어울리는 회색 테두리 */
+            background-color: rgba(255, 255, 255, 0.03) !important;
+            border: 1px solid #374151 !important;
             padding: 18px;
             border-radius: 12px;
             margin-bottom: 25px;
@@ -26,18 +26,19 @@ st.markdown("""
         .theme-notice-title-enhanced {
             font-size: 14px !important; 
             font-weight: 700 !important; 
-            color: #60a5fa !important; /* 테마와 어울리는 밝은 블루 */
+            color: #60a5fa !important;
             display: flex; align-items: center; gap: 6px; margin-bottom: 10px;
         }
+        /* 이 부분을 수정했습니다: 화이트/다크 어디서든 눈에 띄도록 밝은 화이트 톤으로 강조 */
         .theme-notice-text-enhanced {
-            font-size: 13px !important; 
-            color: #d1d5db !important; /* 가독성 좋은 밝은 회색 */
-            line-height: 1.6 !important; 
+            font-size: 13.5px !important; 
+            color: #f3f4f6 !important; /* 약간 더 밝은 회색으로 변경 */
+            line-height: 1.6 !important;
+            font-weight: 500 !important;
         }
         .menu-icon {
             font-weight: bold !important; color: #60a5fa !important; padding: 0 4px;
         }
-
         /* 나머지 기존 스타일 그대로 유지 */
         .main-title {
             font-size: 28px; font-weight: 700; color: #f8fafc;
