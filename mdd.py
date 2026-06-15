@@ -102,8 +102,7 @@ st.sidebar.markdown("""
     <div class="theme-notice-box-enhanced">
         <div class="theme-notice-title-enhanced">💡 다크 모드 이용 권장</div>
         <div class="theme-notice-text-enhanced">
-            본 터미널은 <b>다크 모드(Dark Theme)</b>에서 가장 선명한 금융 차트 시각화를 제공합니다.<br><br>
-            화면이 하얗게 보이신다면 우측 상단 <b><span class="menu-icon">⋮</span> 메뉴 ➔ Settings ➔ Theme</b>에서 <b>Dark</b>를 선택해 주세요.
+            화면이 하얗게 보이신다면 우측 상단 <b><span class="menu-icon">⋮</span> 메뉴에서 <b>Dark</b>를 선택해 주세요.
         </div>
     </div>
 """, unsafe_allow_html=True)
