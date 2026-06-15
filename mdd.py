@@ -4,18 +4,43 @@ import pandas as pd
 import plotly.graph_objects as go
 from datetime import datetime
 
-# 0. 프리미엄 금융 앱 테마 스타일 주입
+# 0. 프리미엄 금융 앱 테마 스타일 주입 및 브라우저 다크모드 강제 힌트 제공
 st.set_page_config(layout="wide", page_title="MDD 터미널", page_icon="📈")
 
+# 🚨 [구글 애드센스 심사 코드 심는 곳] 🚨
+# 구글 애드센스에서 발급받은 <script> ... </script> 코드를 아래 따옴표 사이에 그대로 붙여넣으세요.
+st.markdown("""
+    """, unsafe_allow_html=True)
+
+# 🎨 접속하자마자 시스템 설정을 무시하고 무조건 다크 테마로 고정하는 강력한 CSS 주입
 st.markdown("""
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700&display=swap');
-        html, body, [data-testid="stAppViewContainer"] {
+        
+        /* 루트 및 기본 배경색을 딥 블랙으로 강제 고정 */
+        :root {
+            color-scheme: dark !important;
+        }
+        html, body, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
             background-color: #090d16 !important;
+            color: #f8fafc !important;
             font-family: 'Inter', sans-serif;
         }
+        
+        /* 사이드바 다크 테마 고정 */
+        [data-testid="stSidebar"] {
+            background-color: #111827 !important;
+            border-right: 1px solid #1f2937;
+        }
+        
+        /* 텍스트 색상 보정 */
+        h1, h2, h3, h4, h5, h6, p, span, label {
+            color: #f8fafc !important;
+        }
+        
+        /* 디자인 컴포넌트 스타일 */
         .main-title {
-            font-size: 28px; font-weight: 700; color: #f8fafc;
+            font-size: 28px; font-weight: 700; color: #f8fafc !important;
             letter-spacing: -0.5px; margin-bottom: 25px;
         }
         .asset-card {
@@ -24,15 +49,15 @@ st.markdown("""
         }
         .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 15px; }
         .metric-item { background: #1f2937; padding: 12px 16px; border-radius: 10px; border: 1px solid #374151; }
-        .metric-label { font-size: 11px; color: #9ca3af; font-weight: 500; text-transform: uppercase; }
-        .metric-value { font-size: 20px; font-weight: 700; color: #f9fafb; margin-top: 4px; }
-        .sidebar-macro-box { background: #111827; border: 1px solid #374151; padding: 16px; border-radius: 12px; margin-bottom: 15px; }
+        .metric-label { font-size: 11px; color: #9ca3af !important; font-weight: 500; text-transform: uppercase; }
+        .metric-value { font-size: 20px; font-weight: 700; color: #f9fafb !important; margin-top: 4px; }
+        .sidebar-macro-box { background: #090d16; border: 1px solid #374151; padding: 16px; border-radius: 12px; margin-bottom: 15px; }
         
         /* 등급 가이드 */
         .guide-box {
             background: #111827; border: 1px solid #1f2937; padding: 16px; border-radius: 12px; margin-bottom: 15px;
         }
-        .guide-title { font-size: 13px; font-weight: 700; color: #f8fafc; margin-bottom: 8px; }
+        .guide-title { font-size: 13px; font-weight: 700; color: #f8fafc !important; margin-bottom: 8px; }
         .guide-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center; font-size: 11px; }
         
         .badge { padding: 4px 8px; border-radius: 6px; font-weight: 600; display: inline-block; font-size: 12px; }
