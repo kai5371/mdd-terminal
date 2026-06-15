@@ -9,36 +9,36 @@ st.set_page_config(layout="wide", page_title="MDD 터미널", page_icon="📈")
 
 st.markdown("""
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         html, body, [data-testid="stAppViewContainer"] {
             background-color: #090d16 !important;
             font-family: 'Inter', sans-serif;
         }
 
-        /* 다크모드 권장 가이드 패널 스타일 (색상 강제 고정) */
+        /* 다크모드 권장 가이드 패널 스타일 (테마 일체형) */
         .theme-notice-box-enhanced {
-            background-color: #9ca3af !important; /* 연한 파란색 배경 */
-            border: 2px solid #0369a1 !important; /* 진한 파란색 테두리 */
+            background-color: rgba(255, 255, 255, 0.03) !important; /* 아주 은은한 배경 */
+            border: 1px solid #374151 !important; /* 테마와 어울리는 회색 테두리 */
             padding: 18px;
             border-radius: 12px;
             margin-bottom: 25px;
         }
         .theme-notice-title-enhanced {
             font-size: 14px !important; 
-            font-weight: 800 !important; 
-            color: #0369a1 !important; /* 제목 색상 */
+            font-weight: 700 !important; 
+            color: #60a5fa !important; /* 테마와 어울리는 밝은 블루 */
             display: flex; align-items: center; gap: 6px; margin-bottom: 10px;
         }
         .theme-notice-text-enhanced {
             font-size: 13px !important; 
-            color: #0f172a !important; /* 본문 색상을 아주 진한 남색으로 강제 변경 */
+            color: #d1d5db !important; /* 가독성 좋은 밝은 회색 */
             line-height: 1.6 !important; 
-            font-weight: 600 !important;
         }
         .menu-icon {
-            font-weight: bold !important; font-family: monospace !important; padding: 0 4px !important; color: #0369a1 !important;
+            font-weight: bold !important; color: #60a5fa !important; padding: 0 4px;
         }
 
+        /* 나머지 기존 스타일 그대로 유지 */
         .main-title {
             font-size: 28px; font-weight: 700; color: #f8fafc;
             letter-spacing: -0.5px; margin-bottom: 25px;
@@ -52,45 +52,19 @@ st.markdown("""
         .metric-label { font-size: 11px; color: #9ca3af; font-weight: 500; text-transform: uppercase; }
         .metric-value { font-size: 20px; font-weight: 700; color: #f9fafb; margin-top: 4px; }
         .sidebar-macro-box { background: #111827; border: 1px solid #374151; padding: 16px; border-radius: 12px; margin-bottom: 15px; }
-        
-        .guide-box {
-            background: #111827; border: 1px solid #1f2937; padding: 16px; border-radius: 12px; margin-bottom: 15px;
-        }
+        .guide-box { background: #111827; border: 1px solid #1f2937; padding: 16px; border-radius: 12px; margin-bottom: 15px; }
         .guide-title { font-size: 13px; font-weight: 700; color: #f8fafc; margin-bottom: 8px; }
         .guide-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center; font-size: 11px; }
-        
         .badge { padding: 4px 8px; border-radius: 6px; font-weight: 600; display: inline-block; font-size: 12px; }
         .bg-vgood { background: rgba(16, 185, 129, 0.15) !important; color: #10b981 !important; }
         .bg-good { background: rgba(59, 130, 246, 0.15) !important; color: #3b82f6 !important; }
         .bg-neutral { background: rgba(245, 158, 11, 0.15) !important; color: #f59e0b !important; }
         .bg-warn { background: rgba(239, 68, 68, 0.15) !important; color: #ef4444 !important; }
-
-        .footer-container {
-            margin-top: 60px; padding-top: 30px; border-top: 1px solid #1f2937; text-align: center; color: #6b7280; font-size: 12px;
-        }
-        .footer-links a {
-            color: #9ca3af !important; text-decoration: none; margin: 0 10px; font-weight: 500;
-        }
+        .footer-container { margin-top: 60px; padding-top: 30px; border-top: 1px solid #1f2937; text-align: center; color: #6b7280; font-size: 12px; }
+        .footer-links a { color: #9ca3af !important; text-decoration: none; margin: 0 10px; font-weight: 500; }
         .footer-links a:hover { color: #3b82f6 !important; text-decoration: underline; }
-
-        div[data-testid="stSidebar"] button {
-            background-color: transparent !important;
-            color: #3b82f6 !important;
-            border: none !important;
-            padding: 0px !important;
-            font-size: 12px !important;
-            font-weight: 500 !important;
-            text-decoration: underline !important;
-            text-align: left !important;
-            justify-content: flex-start !important;
-            margin-top: -8px !important;
-            margin-bottom: 15px !important;
-            box-shadow: none !important;
-        }
-        div[data-testid="stSidebar"] button:hover {
-            color: #60a5fa !important;
-            background-color: transparent !important;
-        }
+        div[data-testid="stSidebar"] button { background-color: transparent !important; color: #3b82f6 !important; border: none !important; padding: 0px !important; font-size: 12px !important; font-weight: 500 !important; text-decoration: underline !important; text-align: left !important; justify-content: flex-start !important; margin-top: -8px !important; margin-bottom: 15px !important; box-shadow: none !important; }
+        div[data-testid="stSidebar"] button:hover { color: #60a5fa !important; background-color: transparent !important; }
     </style>
 """, unsafe_allow_html=True)
 
