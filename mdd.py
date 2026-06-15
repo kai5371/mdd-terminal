@@ -14,6 +14,26 @@ st.markdown("""
             background-color: #090d16 !important;
             font-family: 'Inter', sans-serif;
         }
+
+        /* 다크모드 권장 가이드 패널 스타일 */
+        .theme-notice-box-enhanced {
+            background: rgba(59, 130, 246, 0.08);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+        .theme-notice-title-enhanced {
+            font-size: 14px; font-weight: 700; color: #3b82f6 !important; 
+            display: flex; align-items: center; gap: 6px; margin-bottom: 10px;
+        }
+        .theme-notice-text-enhanced {
+            font-size: 13px; color: #e5e7eb !important; line-height: 1.6;
+        }
+        .menu-icon {
+            font-weight: bold; font-family: monospace; padding: 0 4px; color: #3b82f6;
+        }
+
         .main-title {
             font-size: 28px; font-weight: 700; color: #f8fafc;
             letter-spacing: -0.5px; margin-bottom: 25px;
@@ -76,6 +96,17 @@ st.markdown('<p class="main-title">📈 MDD 터미널</p>', unsafe_allow_html=Tr
 
 # --- [사이드바 설정] ---
 st.sidebar.markdown("### ⚙️ 시스템 설정")
+
+# [다크모드 안내 패널 추가]
+st.sidebar.markdown("""
+    <div class="theme-notice-box-enhanced">
+        <div class="theme-notice-title-enhanced">💡 다크 모드 이용 권장</div>
+        <div class="theme-notice-text-enhanced">
+            본 터미널은 <b>다크 모드(Dark Theme)</b>에서 가장 선명한 금융 차트 시각화를 제공합니다.<br><br>
+            화면이 하얗게 보이신다면 우측 상단 <b><span class="menu-icon">⋮</span> 메뉴 ➔ Settings ➔ Theme</b>에서 <b>Dark</b>를 선택해 주세요.
+        </div>
+    </div>
+""", unsafe_allow_html=True)
 
 with st.sidebar.expander("ℹ️ 종목 코드 검색 방법 보기"):
     st.markdown("""
