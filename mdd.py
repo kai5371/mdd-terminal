@@ -28,7 +28,7 @@ st.markdown("""
             display: flex; align-items: center; gap: 6px; margin-bottom: 10px;
         }
         .theme-notice-text-enhanced {
-            font-size: 13px; color: #e5e7eb !important; line-height: 1.6;
+            font-size: 13px; color: #f8fafc !important; line-height: 1.6;
         }
         .menu-icon {
             font-weight: bold; font-family: monospace; padding: 0 4px; color: #3b82f6;
