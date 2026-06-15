@@ -9,7 +9,7 @@ st.set_page_config(layout="wide", page_title="MDD 터미널", page_icon="📈")
 
 st.markdown("""
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700&display=swap');
         html, body, [data-testid="stAppViewContainer"] {
             background-color: #090d16 !important;
             font-family: 'Inter', sans-serif;
@@ -28,25 +28,7 @@ st.markdown("""
         .metric-value { font-size: 20px; font-weight: 700; color: #f9fafb; margin-top: 4px; }
         .sidebar-macro-box { background: #111827; border: 1px solid #374151; padding: 16px; border-radius: 12px; margin-bottom: 15px; }
         
-        /* 다크모드 권장 가이드 패널 스타일 */
-        .theme-notice-box-enhanced {
-            background: rgba(59, 130, 246, 0.08);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            padding: 18px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-        }
-        .theme-notice-title-enhanced {
-            font-size: 14px; font-weight: 700; color: #3b82f6 !important; 
-            display: flex; align-items: center; gap: 6px; margin-bottom: 10px;
-        }
-        .theme-notice-text-enhanced {
-            font-size: 13px; color: #e5e7eb !important; line-height: 1.6;
-        }
-        .menu-icon {
-            font-weight: bold; font-family: monospace; padding: 0 4px; color: #3b82f6;
-        }
-
+        /* 등급 가이드 */
         .guide-box {
             background: #111827; border: 1px solid #1f2937; padding: 16px; border-radius: 12px; margin-bottom: 15px;
         }
@@ -59,6 +41,7 @@ st.markdown("""
         .bg-neutral { background: rgba(245, 158, 11, 0.15) !important; color: #f59e0b !important; }
         .bg-warn { background: rgba(239, 68, 68, 0.15) !important; color: #ef4444 !important; }
 
+        /* 구글 애드센스 심사용 푸터 스타일 */
         .footer-container {
             margin-top: 60px; padding-top: 30px; border-top: 1px solid #1f2937; text-align: center; color: #6b7280; font-size: 12px;
         }
@@ -67,6 +50,7 @@ st.markdown("""
         }
         .footer-links a:hover { color: #3b82f6 !important; text-decoration: underline; }
 
+        /* 세련된 텍스트 버튼 스타일 링크 보정 */
         div[data-testid="stSidebar"] button {
             background-color: transparent !important;
             color: #3b82f6 !important;
@@ -92,17 +76,6 @@ st.markdown('<p class="main-title">📈 MDD 터미널</p>', unsafe_allow_html=Tr
 
 # --- [사이드바 설정] ---
 st.sidebar.markdown("### ⚙️ 시스템 설정")
-
-# [추가된 다크모드 안내 패널]
-st.sidebar.markdown("""
-    <div class="theme-notice-box-enhanced">
-        <div class="theme-notice-title-enhanced">💡 다크 모드 이용 권장</div>
-        <div class="theme-notice-text-enhanced">
-            본 터미널은 <b>다크 모드(Dark Theme)</b>에서 가장 선명한 금융 차트 시각화를 제공합니다.<br><br>
-            화면이 하얗게 보이신다면 우측 상단 <b><span class="menu-icon">⋮</span> 메뉴 ➔ Settings ➔ Theme</b>에서 <b>Dark</b>를 선택해 주세요.
-        </div>
-    </div>
-""", unsafe_allow_html=True)
 
 with st.sidebar.expander("ℹ️ 종목 코드 검색 방법 보기"):
     st.markdown("""
@@ -406,7 +379,7 @@ else:
         st.dataframe(styled_df, height=750, use_container_width=True, hide_index=True)
 
 
-# --- 🛡️ [종합 가이드 및 이용 정책] ---
+# --- 🛡️ [구글 애드센스 승인 보장 전용 프리미엄 정보 가이드 패널] ---
 st.markdown("<br><br><hr id='policy-section' style='border:0; height:1px; background:#1f2937;'>", unsafe_allow_html=True)
 st.markdown("### 📚 MDD 터미널 종합 가이드 및 이용 정책")
 
@@ -416,31 +389,43 @@ with tab1:
     st.markdown("""
     #### Q1. MDD(최대 하락률) 분석이 미국 주식/ETF 투자에 왜 필수적인가요?
     * 주식 시장에서 최고점 대비 현재 얼마나 하락했는지를 파악하는 것은 '분할 매수 타이밍'을 잡는 최고의 기준이 됩니다.
-    * 본 터미널은 이를 통계학적으로 시각화하여 감정에 휘둘리지 않는 투자를 돕습니다.
+    * 특히 **JEPQ, JEPI** 등 고배당 ETF나 **QQQ, SPY** 같은 지수 추종 자산은 역사적으로 특정 낙폭(예: -10%, -15%)에 도달했을 때 회복 확률이 급격히 높아지는 경향이 있습니다. 본 터미널은 이를 통계학적으로 시각화하여 감정에 휘둘리지 않는 투자를 돕습니다.
 
     #### Q2. 달러(USD) 기준 낙폭과 원화(KRW) 기준 낙폭이 다른 이유는 무엇인가요?
     * 한국인 투자자는 미국 주식을 살 때 환율의 영향을 받습니다. 주가가 떨어지더라도 원/달러 환율이 오르면(환쿠션) 원화 기준 내 계좌의 실제 손실은 더 적을 수 있습니다.
     * 본 터미널은 야후 파이낸스(`yfinance`)의 실시간 환율 데이터를 100% 동기화하여, **환율 변동이 반영된 진짜 내 계좌의 원화 기준 낙폭**을 복합 Overlay 차트로 완벽히 대조 분석해 드립니다.
 
     #### Q3. 오른쪽 '구간별 밀도 통계' 테이블의 '회복 확률'은 어떻게 계산되나요?
-    * 선택한 분석 기간 중, 해당 하락률 구간 위에서 머물렀던 영업일수의 누적 비중을 계산한 지표입니다.
+    * 선택한 분석 기간 중, 해당 하락률(예: -10% 초과) 구간 위에서 머물렀던 영업일수의 누적 비중을 계산한 지표입니다.
+    * 회복 확률이 90% 이상이라는 것은 역사적 자산 추세상 해당 낙폭 밑으로 떨어져서 머물렀던 날이 전체 기간 중 10% 미만이라는 뜻으로, 매우 강력한 매수 지지선 역할을 하고 있음을 의미합니다.
     """)
 
 with tab2:
     st.markdown("""
     본 'MDD 터미널'은 이용자의 소중한 개인정보를 안전하게 보호하고자 최선을 다하고 있습니다.
     
-    * **데이터 처리 방식:** 사용자가 입력하는 종목 코드 및 조회 날짜는 일회성 파라미터로만 사용되며, 브라우저 종료 시 완전히 소멸됩니다.
+    * **개인정보의 수집 및 이용 목적:** 본 웹서비스는 이용자의 어떠한 개인정보(이름, 이메일, 금융 계좌 정보 등)도 서버에 저장하거나 수집하지 않습니다.
+    * **데이터 처리 방식:** 사용자가 입력하는 종목 코드 및 조회 날짜는 오픈 API(Yahoo Finance)와의 실시간 통신을 위한 일회성 파라미터로만 사용되며, 브라우저 종료 시 완전히 소멸됩니다.
+    * **쿠키 및 트래픽 분석:** 구글 애드센스 등 서드파티 광고 가동 시 맞춤형 광고 송출을 위한 비식별 쿠키가 브라우저에 저장될 수 있으며, 이는 브라우저 설정을 통해 언제든 차단하실 수 있습니다.
     """)
 
 with tab3:
     st.markdown("""
+    #### 📈 Service Introduce
+    * **MDD 터미널**은 글로벌 거시경제 지표(원/달러 환율, WTI 국제 유가)와 개별 투자 자산의 역사적 하락률 데이터를 융합하여 제공하는 고성능 금융 시각화 웹 플랫폼입니다. 
+    * 1인 개발자가 직접 겪은 환노출 자산 관리의 불편함을 해결하기 위해 '바이브 코딩' 기술을 활용하여 제작되었으며, 트래픽 비용 없이 24시간 누구에게나 투명하고 유용한 금융 통계를 제공하는 것을 목적으로 합니다.
+
     #### 🛡️ 투자 면책 조항 (Disclaimer)
-    * 본 서비스가 제공하는 모든 금융 데이터 및 계산 수치는 투자 참고용일 뿐이며, 실제 거래소 데이터와 오차가 발생할 수 있습니다.
-    * 모든 투자의 최종 판단과 책임은 투자자 본인에게 있습니다.
+    * 본 서비스가 제공하는 모든 금융 데이터 및 계산 수치는 투자 참고용일 뿐이며, 실제 거래소 데이터와 오차가 발생할 수 있습니다. 
+    * 본 서비스는 이용자의 투자 결과에 대해 어떠한 법적 책임도 지지 않으며, 모든 투자의 최종 판단과 책임은 투자자 본인에게 있습니다.
+
+    #### ✉️ Contact Us
+    * 서비스 오류 제보 및 비즈니스 제휴, 기능 건의 사항이 있으신 분은 아래의 공식 창구로 연락 주시기 바랍니다.
+    * **이메일:** `dkdlel1747@gmail.com`
+    * **업데이트 일자:** 2026년 6월 최신화 완료
     """)
 
-# 구글 애드센스 봇 크롤링용 크레딧 푸터
+# 구글 애드센스 봇 크롤링용 크레딧 푸터 (동적 앵커 링크 연결 완료)
 st.markdown(f"""
     <div class="footer-container">
         <div class="footer-links">
