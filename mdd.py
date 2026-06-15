@@ -15,23 +15,28 @@ st.markdown("""
             font-family: 'Inter', sans-serif;
         }
 
-        /* 다크모드 권장 가이드 패널 스타일 */
+        /* 다크모드 권장 가이드 패널 스타일 (색상 강제 고정) */
         .theme-notice-box-enhanced {
-            background: rgba(59, 130, 246, 0.08);
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            background-color: #e0f2fe !important; /* 연한 파란색 배경 */
+            border: 2px solid #0369a1 !important; /* 진한 파란색 테두리 */
             padding: 18px;
             border-radius: 12px;
             margin-bottom: 25px;
         }
         .theme-notice-title-enhanced {
-            font-size: 14px; font-weight: 700; color: #3b82f6 !important; 
+            font-size: 14px !important; 
+            font-weight: 800 !important; 
+            color: #0369a1 !important; /* 제목 색상 */
             display: flex; align-items: center; gap: 6px; margin-bottom: 10px;
         }
         .theme-notice-text-enhanced {
-            font-size: 13px; color: #e5e7eb !important; line-height: 1.6;
+            font-size: 13px !important; 
+            color: #0f172a !important; /* 본문 색상을 아주 진한 남색으로 강제 변경 */
+            line-height: 1.6 !important; 
+            font-weight: 600 !important;
         }
         .menu-icon {
-            font-weight: bold; font-family: monospace; padding: 0 4px; color: #3b82f6;
+            font-weight: bold !important; font-family: monospace !important; padding: 0 4px !important; color: #0369a1 !important;
         }
 
         .main-title {
@@ -48,7 +53,6 @@ st.markdown("""
         .metric-value { font-size: 20px; font-weight: 700; color: #f9fafb; margin-top: 4px; }
         .sidebar-macro-box { background: #111827; border: 1px solid #374151; padding: 16px; border-radius: 12px; margin-bottom: 15px; }
         
-        /* 등급 가이드 */
         .guide-box {
             background: #111827; border: 1px solid #1f2937; padding: 16px; border-radius: 12px; margin-bottom: 15px;
         }
@@ -61,7 +65,6 @@ st.markdown("""
         .bg-neutral { background: rgba(245, 158, 11, 0.15) !important; color: #f59e0b !important; }
         .bg-warn { background: rgba(239, 68, 68, 0.15) !important; color: #ef4444 !important; }
 
-        /* 구글 애드센스 심사용 푸터 스타일 */
         .footer-container {
             margin-top: 60px; padding-top: 30px; border-top: 1px solid #1f2937; text-align: center; color: #6b7280; font-size: 12px;
         }
@@ -70,7 +73,6 @@ st.markdown("""
         }
         .footer-links a:hover { color: #3b82f6 !important; text-decoration: underline; }
 
-        /* 세련된 텍스트 버튼 스타일 링크 보정 */
         div[data-testid="stSidebar"] button {
             background-color: transparent !important;
             color: #3b82f6 !important;
@@ -97,12 +99,12 @@ st.markdown('<p class="main-title">📈 MDD 터미널</p>', unsafe_allow_html=Tr
 # --- [사이드바 설정] ---
 st.sidebar.markdown("### ⚙️ 시스템 설정")
 
-# [다크모드 안내 패널 추가]
+# 다크모드 안내 패널
 st.sidebar.markdown("""
     <div class="theme-notice-box-enhanced">
-        <div class="theme-notice-title-enhanced">💡 다크 모드 이용 권장</div>
+        <div class="theme-notice-title-enhanced">💡 화면 설정 안내</div>
         <div class="theme-notice-text-enhanced">
-            본 터미널은 <b>다크 모드(Dark Theme)</b>에서 가장 선명한 금융 차트 시각화를 제공합니다.<br><br>
+            본 터미널은 <b>다크 모드(Dark Theme)</b>에서 최적의 시각화 데이터를 제공합니다.<br><br>
             화면이 하얗게 보이신다면 우측 상단 <b><span class="menu-icon">⋮</span> 메뉴 ➔ Settings ➔ Theme</b>에서 <b>Dark</b>를 선택해 주세요.
         </div>
     </div>
