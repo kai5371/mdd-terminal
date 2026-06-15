@@ -17,7 +17,7 @@ st.markdown("""
 
         /* 다크모드 권장 가이드 패널 스타일 (색상 강제 고정) */
         .theme-notice-box-enhanced {
-            background-color: #e0f2fe !important; /* 연한 파란색 배경 */
+            background-color: #9ca3af !important; /* 연한 파란색 배경 */
             border: 2px solid #0369a1 !important; /* 진한 파란색 테두리 */
             padding: 18px;
             border-radius: 12px;
