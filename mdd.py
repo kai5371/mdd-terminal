@@ -9,36 +9,88 @@ st.set_page_config(layout="wide", page_title="MDD 터미널", page_icon="📈")
 
 st.markdown("""
     <style>
-        /* 다크모드 권장 가이드 패널 - 어떤 테마에서도 텍스트가 잘 보이도록 강제 색상 지정 */
-        .theme-notice-box-enhanced {
-            background-color: rgba(0, 0, 0, 0.05) !important; /* 배경을 아주 살짝만 어둡게 */
-            border: 1px solid #3b82f6 !important; /* 테두리를 파란색으로 명확하게 */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        html, body, [data-testid="stAppViewContainer"] {
+            background-color: #090d16 !important;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* [추가된 안내 스타일] 화이트/다크 어디서든 잘 보이는 고대비 디자인 */
+        .theme-notice-box {
+            background-color: #f1f5f9 !important; 
+            border: 2px solid #3b82f6 !important; 
             padding: 18px;
             border-radius: 12px;
             margin-bottom: 25px;
+            color: #1e293b !important;
         }
-        .theme-notice-title-enhanced {
+        .theme-notice-title {
             font-size: 14px !important; 
             font-weight: 800 !important; 
-            color: #1e40af !important; /* 진한 파란색 제목 */
-            display: flex; align-items: center; gap: 6px; margin-bottom: 10px;
+            color: #1e3a8a !important; 
+            margin-bottom: 8px;
         }
-        /* 핵심: 폰트 색상을 '가장 어두운 파란색'으로 고정하여 배경 대비 최대화 */
-        .theme-notice-text-enhanced {
-            font-size: 14px !important; 
-            color: #111827 !important; /* 짙은 색으로 고정 (화이트 모드에서도 보임) */
-            line-height: 1.6 !important; 
-            font-weight: 600 !important;
+        .theme-notice-text {
+            font-size: 13px !important; 
+            color: #334155 !important; 
+            line-height: 1.5 !important;
         }
-        .menu-icon {
-            font-weight: bold !important; color: #1e40af !important; padding: 0 4px;
+
+        .main-title {
+            font-size: 28px; font-weight: 700; color: #f8fafc;
+            letter-spacing: -0.5px; margin-bottom: 25px;
         }
+        .asset-card {
+            background: #111827; border: 1px solid #1f2937; border-radius: 16px;
+            padding: 24px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); margin-bottom: 20px;
+        }
+        .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 15px; }
+        .metric-item { background: #1f2937; padding: 12px 16px; border-radius: 10px; border: 1px solid #374151; }
+        .metric-label { font-size: 11px; color: #9ca3af; font-weight: 500; text-transform: uppercase; }
+        .metric-value { font-size: 20px; font-weight: 700; color: #f9fafb; margin-top: 4px; }
+        .sidebar-macro-box { background: #111827; border: 1px solid #374151; padding: 16px; border-radius: 12px; margin-bottom: 15px; }
         
-        /* 나머지 UI 스타일은 유지 */
-        html, body, [data-testid="stAppViewContainer"] { background-color: #090d16 !important; font-family: 'Inter', sans-serif; }
-        .main-title { font-size: 28px; font-weight: 700; color: #f8fafc; letter-spacing: -0.5px; margin-bottom: 25px; }
-        .asset-card { background: #111827; border: 1px solid #1f2937; border-radius: 16px; padding: 24px; margin-bottom: 20px; }
-        /* (중략 - 기존 나머지 스타일 동일) */
+        /* 등급 가이드 */
+        .guide-box {
+            background: #111827; border: 1px solid #1f2937; padding: 16px; border-radius: 12px; margin-bottom: 15px;
+        }
+        .guide-title { font-size: 13px; font-weight: 700; color: #f8fafc; margin-bottom: 8px; }
+        .guide-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center; font-size: 11px; }
+        
+        .badge { padding: 4px 8px; border-radius: 6px; font-weight: 600; display: inline-block; font-size: 12px; }
+        .bg-vgood { background: rgba(16, 185, 129, 0.15) !important; color: #10b981 !important; }
+        .bg-good { background: rgba(59, 130, 246, 0.15) !important; color: #3b82f6 !important; }
+        .bg-neutral { background: rgba(245, 158, 11, 0.15) !important; color: #f59e0b !important; }
+        .bg-warn { background: rgba(239, 68, 68, 0.15) !important; color: #ef4444 !important; }
+
+        /* 구글 애드센스 심사용 푸터 스타일 */
+        .footer-container {
+            margin-top: 60px; padding-top: 30px; border-top: 1px solid #1f2937; text-align: center; color: #6b7280; font-size: 12px;
+        }
+        .footer-links a {
+            color: #9ca3af !important; text-decoration: none; margin: 0 10px; font-weight: 500;
+        }
+        .footer-links a:hover { color: #3b82f6 !important; text-decoration: underline; }
+
+        /* 세련된 텍스트 버튼 스타일 링크 보정 */
+        div[data-testid="stSidebar"] button {
+            background-color: transparent !important;
+            color: #3b82f6 !important;
+            border: none !important;
+            padding: 0px !important;
+            font-size: 12px !important;
+            font-weight: 500 !important;
+            text-decoration: underline !important;
+            text-align: left !important;
+            justify-content: flex-start !important;
+            margin-top: -8px !important;
+            margin-bottom: 15px !important;
+            box-shadow: none !important;
+        }
+        div[data-testid="stSidebar"] button:hover {
+            color: #60a5fa !important;
+            background-color: transparent !important;
+        }
     </style>
 """, unsafe_allow_html=True)
 
@@ -47,12 +99,13 @@ st.markdown('<p class="main-title">📈 MDD 터미널</p>', unsafe_allow_html=Tr
 # --- [사이드바 설정] ---
 st.sidebar.markdown("### ⚙️ 시스템 설정")
 
-# 다크모드 안내 패널
+# 다크 모드 권장 문구 추가
 st.sidebar.markdown("""
-    <div class="theme-notice-box-enhanced">
-        <div class="theme-notice-title-enhanced">💡 화면 설정 안내</div>
-        <div class="theme-notice-text-enhanced">
-            화면이 하얗게 보이신다면 우측 상단 <b><span class="menu-icon">⋮</span> 메뉴에서 <b>Dark</b>를 선택해 주세요.
+    <div class="theme-notice-box">
+        <div class="theme-notice-title">💡 화면 설정 안내</div>
+        <div class="theme-notice-text">
+            본 터미널은 <b>다크 모드</b>에 최적화되어 있습니다.<br>
+            메뉴 ➔ Settings ➔ Theme에서 <b>Dark</b>를 선택해 주세요.
         </div>
     </div>
 """, unsafe_allow_html=True)
