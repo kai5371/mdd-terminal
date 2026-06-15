@@ -104,8 +104,8 @@ st.sidebar.markdown("""
     <div class="theme-notice-box">
         <div class="theme-notice-title">💡 화면 설정 안내</div>
         <div class="theme-notice-text">
-            본 터미널은 <b>다크 모드</b>에 최적화되어 있습니다.<br>
-            메뉴 ➔ Settings ➔ Theme에서 <b>Dark</b>를 선택해 주세요.
+            <b>다크 모드</b>에 최적화되어 있습니다.<br>
+            우측상단 메뉴에서 <b>Dark</b>를 선택해 주세요.
         </div>
     </div>
 """, unsafe_allow_html=True)
