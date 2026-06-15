@@ -7,15 +7,42 @@ from datetime import datetime
 # 0. 프리미엄 금융 앱 테마 스타일 주입
 st.set_page_config(layout="wide", page_title="MDD 터미널", page_icon="📈")
 
+# 🚨 [다크 테마 강제 고정 치트키] 사용자의 웹브라우저 자체에 다크모드 메타 속성 강제 주입
+st.markdown("""
+    <script>
+        // 브라우저 자체의 다크모드 선호도를 강제로 'dark'로 고정
+        document.documentElement.setAttribute('data-theme', 'dark');
+    </script>
+""", unsafe_allow_html=True)
+
 st.markdown("""
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700&display=swap');
-        html, body, [data-testid="stAppViewContainer"] {
+        
+        /* 🚨 브라우저 시스템 테마 설정을 무시하도록 루트 레벨에서 다크모드 강제 선언 */
+        :root {
+            color-scheme: dark !important;
+        }
+        
+        html, body, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
             background-color: #090d16 !important;
+            color: #f8fafc !important;
             font-family: 'Inter', sans-serif;
         }
+        
+        /* 사이드바 영역도 빈틈없이 다크 테마 고정 */
+        [data-testid="stSidebar"] {
+            background-color: #111827 !important;
+            border-right: 1px solid #1f2937;
+        }
+        
+        /* 시스템 기본 텍스트 색상이 깨지지 않게 보정 */
+        h1, h2, h3, h4, h5, h6, p, span, label {
+            color: #f8fafc !important;
+        }
+        
         .main-title {
-            font-size: 28px; font-weight: 700; color: #f8fafc;
+            font-size: 28px; font-weight: 700; color: #f8fafc !important;
             letter-spacing: -0.5px; margin-bottom: 25px;
         }
         .asset-card {
@@ -24,15 +51,15 @@ st.markdown("""
         }
         .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 15px; }
         .metric-item { background: #1f2937; padding: 12px 16px; border-radius: 10px; border: 1px solid #374151; }
-        .metric-label { font-size: 11px; color: #9ca3af; font-weight: 500; text-transform: uppercase; }
-        .metric-value { font-size: 20px; font-weight: 700; color: #f9fafb; margin-top: 4px; }
+        .metric-label { font-size: 11px; color: #9ca3af !important; font-weight: 500; text-transform: uppercase; }
+        .metric-value { font-size: 20px; font-weight: 700; color: #f9fafb !important; margin-top: 4px; }
         .sidebar-macro-box { background: #111827; border: 1px solid #374151; padding: 16px; border-radius: 12px; margin-bottom: 15px; }
         
         /* 등급 가이드 */
         .guide-box {
             background: #111827; border: 1px solid #1f2937; padding: 16px; border-radius: 12px; margin-bottom: 15px;
         }
-        .guide-title { font-size: 13px; font-weight: 700; color: #f8fafc; margin-bottom: 8px; }
+        .guide-title { font-size: 13px; font-weight: 700; color: #f8fafc !important; margin-bottom: 8px; }
         .guide-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center; font-size: 11px; }
         
         .badge { padding: 4px 8px; border-radius: 6px; font-weight: 600; display: inline-block; font-size: 12px; }
@@ -417,7 +444,7 @@ with tab3:
 
     #### 🛡️ 투자 면책 조항 (Disclaimer)
     * 본 서비스가 제공하는 모든 금융 데이터 및 계산 수치는 투자 참고용일 뿐이며, 실제 거래소 데이터와 오차가 발생할 수 있습니다. 
-    * 본 서비스는 이용자의 투자 결과에 대해 어떠한 법적 책임도 지지 않으며, 모든 투자의 최종 판단과 책임은 투자자 본인에게 있습니다.
+    * 본 서비스는 이용자의 투자 결과에 대해 어대로 법적 책임도 지지 않으며, 모든 투자의 최종 판단과 책임은 투자자 본인에게 있습니다.
 
     #### ✉️ Contact Us
     * 서비스 오류 제보 및 비즈니스 제휴, 기능 건의 사항이 있으신 분은 아래의 공식 창구로 연락 주시기 바랍니다.
